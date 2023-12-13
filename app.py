@@ -4,12 +4,10 @@ import streamlit as st
 from google.cloud import storage
 from st_files_connection import FilesConnection
 
-
 conn = st.connection('gcs', type=FilesConnection)
 
-model_read = conn.read("fake-news-detection-wagon/distilbert_model_best.h5/tf_model.h5", input_format=None, ttl=600)
+# model_read = conn.read("fake-news-detection-wagon/distilbert_model_best.h5/tf_model.h5", input_format=None, ttl=600)
 config_read = conn.read("fake-news-detection-wagon/distilbert_model_best.h5/config.json", input_format="json", ttl=600)
-
 
 
 # Load model and tokenizer
@@ -36,7 +34,9 @@ tokenizer = DistilBertTokenizer.from_pretrained("distilbert-base-uncased")
 # blob_config.download_to_filename(tokenizer_path)
     # Load the model from the downloaded file
 
-model = TFDistilBertForSequenceClassification.from_pretrained(model_read, config=config_read)
+url = 'https://storage.googleapis.com/fake-news-detection-wagon/distilbert_model_best.h5/tf_model.h5'
+
+model = TFDistilBertForSequenceClassification.from_pretrained(url, config=config_read)
 
 
 # Function to predict using the DistilBERT model
