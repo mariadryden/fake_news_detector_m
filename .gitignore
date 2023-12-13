@@ -2,3 +2,5 @@
 .gitignore_globales
 data/
 distilbert_model_best.h5/*
+config.json
+tf_model.h5
