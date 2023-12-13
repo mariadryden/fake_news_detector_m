@@ -1,3 +1,4 @@
 .gitignore_global
 .gitignore_globales
 data/
+distilbert_model_best.h5/*

@@ -24,7 +24,7 @@ tokenizer = DistilBertTokenizer.from_pretrained("distilbert-base-uncased")
 # for i in blob:
 #     st.write(i.name)
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'forward-entity-406417-ec2f9997a2ed.json'
+# os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'forward-entity-406417-ec2f9997a2ed.json'
 
 # def load_model_from_bucket(bucket_name, model_path):
 # Download the model from Google Cloud Storage
