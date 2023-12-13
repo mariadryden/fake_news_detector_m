@@ -1,6 +1,6 @@
 .gitignore_global
 .gitignore_globales
-data/
 distilbert_model_best.h5/*
 config.json
 tf_model.h5
+distilbert_tokenizer_best/*
