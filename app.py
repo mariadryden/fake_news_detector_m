@@ -2,13 +2,7 @@ from transformers import DistilBertTokenizer, DistilBertConfig, TFDistilBertForS
 import tensorflow as tf
 import streamlit as st
 from google.cloud import storage
-from st_files_connection import FilesConnection
-
-conn = st.connection('gcs', type=FilesConnection)
-
-# model_read = conn.read("fake-news-detection-wagon/distilbert_model_best.h5/tf_model.h5", input_format=None, ttl=600)
-config_read = conn.read("fake-news-detection-wagon/distilbert_model_best.h5/config.json", input_format="json", ttl=600)
-
+import requests
 
 # Load model and tokenizer
 # model_path = "distilbert_model_best.h5/tf_model.h5"
@@ -16,7 +10,6 @@ config_read = conn.read("fake-news-detection-wagon/distilbert_model_best.h5/conf
 # tokenizer_path = "distilbert_tokenizer_best/special_tokens_map.json"
 # config_path_tokenizer = "distilbert_tokenizer_best/tokenizer_config.json"
 
-config_model = DistilBertConfig.from_json_file(config_read)
 
 # model = TFDistilBertForSequenceClassification.from_pretrained(model_path, config=config_model)
 
@@ -34,9 +27,23 @@ tokenizer = DistilBertTokenizer.from_pretrained("distilbert-base-uncased")
 # blob_config.download_to_filename(tokenizer_path)
     # Load the model from the downloaded file
 
-url = 'https://storage.googleapis.com/fake-news-detection-wagon/distilbert_model_best.h5/tf_model.h5'
+url_model = 'https://storage.googleapis.com/fake-news-detection-wagon/distilbert_model_best.h5/tf_model.h5'
+url_config = 'https://storage.googleapis.com/fake-news-detection-wagon/distilbert_model_best.h5/config.json'
 
-model = TFDistilBertForSequenceClassification.from_pretrained(url, config=config_read)
+def download_file(url, output_path):
+    response = requests.get(url)
+    with open(output_path, "wb") as file:
+        file.write(response.content)
+
+output_path_model = './tf_model.h5'
+output_path_config = './config.json'
+
+download_file(url_model, output_path_model)
+download_file(url_config, output_path_config)
+
+config_model = DistilBertConfig.from_json_file('config.json')
+
+model = TFDistilBertForSequenceClassification.from_pretrained('tf_model.h5', config=config_model)
 
 
 # Function to predict using the DistilBERT model
