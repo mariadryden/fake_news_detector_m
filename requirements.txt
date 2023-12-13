@@ -1,6 +1,6 @@
-transformers==4.34.0
-tensorflow==2.15.0  # If using the TensorFlow version
-streamlit==1.22
-google-cloud-storage==2.4.0
+transformers
+tensorflow
+streamlit
+google-cloud-storage
 gcsfs
 st-files-connection
