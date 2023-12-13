@@ -2,45 +2,41 @@ from transformers import DistilBertTokenizer, DistilBertConfig, TFDistilBertForS
 import tensorflow as tf
 import streamlit as st
 from google.cloud import storage
-import os
+from st_files_connection import FilesConnection
+
+
+conn = st.connection('gcs', type=FilesConnection)
+
+model_read = conn.read("fake-news-detection-wagon/distilbert_model_best.h5/tf_model.h5", input_format="h5", ttl=600)
+config_read = conn.read("fake-news-detection-wagon/distilbert_model_best.h5/config.json", input_format="json", ttl=600)
+
+
 
 # Load model and tokenizer
-model_path = "distilbert_model_best.h5/tf_model.h5"
-config_path_model = "distilbert_model_best.h5/config.json"
+# model_path = "distilbert_model_best.h5/tf_model.h5"
+# config_path_model = "distilbert_model_best.h5/config.json"
 # tokenizer_path = "distilbert_tokenizer_best/special_tokens_map.json"
 # config_path_tokenizer = "distilbert_tokenizer_best/tokenizer_config.json"
 
-config_model = DistilBertConfig.from_json_file(config_path_model)
+config_model = DistilBertConfig.from_json_file(config_read)
 
 # model = TFDistilBertForSequenceClassification.from_pretrained(model_path, config=config_model)
 
 # tokenizer_path = 'distilbert_tokenizer_best'
 tokenizer = DistilBertTokenizer.from_pretrained("distilbert-base-uncased")
 
-# client = storage.Client()
-# bucket = client.get_bucket('fake-news-detection-wagon')
-# blob = bucket.list_blobs()
-
-# for i in blob:
-#     st.write(i.name)
-
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'forward-entity-406417-ec2f9997a2ed.json'
 
 # def load_model_from_bucket(bucket_name, model_path):
 # Download the model from Google Cloud Storage
-client = storage.Client()
-bucket = client.get_bucket('fake-news-detection-wagon')
-blob_model = bucket.blob(model_path)
-blob_model.download_to_filename('tf_model.h5')
-blob_config = bucket.blob(config_path_model)
-blob_config.download_to_filename('config.json')
+# blob_model = bucket.blob(model_path)
+# blob_model.download_to_filename('tf_model.h5')
+# blob_config = bucket.blob(config_path_model)
+# blob_config.download_to_filename('config.json')
 # blob_tokenizer = bucket.blob(tokenizer_path)
 # blob_config.download_to_filename(tokenizer_path)
     # Load the model from the downloaded file
-model = TFDistilBertForSequenceClassification.from_pretrained('tf_model.h5', config='config.json')
-    # return model
 
-# pred_model = load_model_from_bucket('fake-news-detection-wagon', model_path)
+model = TFDistilBertForSequenceClassification.from_pretrained(model_read, config=config_read)
 
 
 # Function to predict using the DistilBERT model

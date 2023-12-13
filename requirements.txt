@@ -2,3 +2,5 @@ transformers==4.34.0
 tensorflow==2.15.0  # If using the TensorFlow version
 streamlit==1.11.1
 google-cloud-storage==2.4.0
+gcsfs
+st-files-connection
