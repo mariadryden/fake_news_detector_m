@@ -7,7 +7,7 @@ from st_files_connection import FilesConnection
 
 conn = st.connection('gcs', type=FilesConnection)
 
-model_read = conn.read("fake-news-detection-wagon/distilbert_model_best.h5/tf_model.h5", input_format="h5", ttl=600)
+model_read = conn.read("fake-news-detection-wagon/distilbert_model_best.h5/tf_model.h5", ttl=600)
 config_read = conn.read("fake-news-detection-wagon/distilbert_model_best.h5/config.json", input_format="json", ttl=600)
 
 
