@@ -115,15 +115,15 @@ st.set_page_config(
 st.title(":orange[_CredibleContent_] 📰")
 st.markdown('''
             The technological surge in the past few years has led to a plethora of
-            misinformation being spread among the vast corners of the Internet.
+            **misinformation** being spread among the vast corners of the Internet.
             ''')
 st.markdown('''
-            This is a news detector that aims to predict whether a given text, namely a news article,
-            conveys real information, fake information, or is rather suspicious.
+            This is a **news detector** that aims to predict whether a given news article
+            conveys *real* information, *fake* information, or is rather *suspicious*.
             ''')
 st.markdown('''
-            All you need to do is input a text below and it will return a prediction,
-            as well as its probability.
+            All you need to do is input a text below and the detector will return a prediction,
+            as well as its respective probability.
             ''')
 
 st.markdown("""
