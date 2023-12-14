@@ -11,10 +11,11 @@ import toml
 # ------------------------------------------------------------------------------------------------#
 
 # Load model and tokenizer
-tokenizer = DistilBertTokenizer.from_pretrained("distilbert-base-uncased")
 
 url_model = 'https://storage.googleapis.com/fake-news-detection-wagon/distilbert_model_best.h5/tf_model.h5'
 url_config = 'https://storage.googleapis.com/fake-news-detection-wagon/distilbert_model_best.h5/config.json'
+
+url_tok_config = 'https://storage.googleapis.com/fake-news-detection-wagon/distilbert_tokenizer_best/tokenizer_config.json'
 
 def download_file(url, output_path):
     response = requests.get(url)
@@ -24,8 +25,14 @@ def download_file(url, output_path):
 output_path_model = './tf_model.h5'
 output_path_config = './config.json'
 
+output_path_tok = './tokenizer_config.json'
+
 download_file(url_model, output_path_model)
 download_file(url_config, output_path_config)
+
+download_file(url_tok_config, output_path_tok)
+
+tokenizer = DistilBertTokenizer.from_pretrained("tokenizer_config.json")
 
 config_model = DistilBertConfig.from_json_file('config.json')
 
@@ -91,23 +98,23 @@ def test_article(article, optimizer=True, max_length=300):
         class_names = ['Real', 'Fake']
         classification = f"**{class_names[predicted_class[0]]}**"
 
-    return [f"The article is predicted as: {classification}", f"Probabilities per class: {probabilities.numpy()[0]}"]
+    return [f"The article is predicted as: {classification}", f"Probability: {max(probabilities.numpy()[0]) * 100:.2f}%"]
 
 # ------------------------------------------------------------------------------------------------#
 
 # Streamlit app
 
 # Read theme configurations from config.toml
-theme_config = toml.load("config.toml")["theme"]
+# theme_config = toml.load(".streamlit/config.toml")["theme"]
 
 # Set Streamlit theme
-st.set_page_config(
-    page_title="CredibleContent",
-    page_icon="📰",
-    layout="wide",
-    initial_sidebar_state="expanded",
-    **theme_config
-)
+# st.set_page_config(
+#     page_title="CredibleContent",
+#     page_icon="📰",
+#     layout="wide",
+#     initial_sidebar_state="expanded",
+#     **theme_config
+# )
 
 st.title("CredibleContent 📰")
 st.markdown('''

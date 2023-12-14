@@ -5,4 +5,4 @@ config.json
 tf_model.h5
 distilbert_tokenizer_best/*
 secrets.toml
-config.toml
+tokenizer_config.json
