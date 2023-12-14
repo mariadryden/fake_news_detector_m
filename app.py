@@ -98,7 +98,7 @@ def test_article(article, optimizer=True, max_length=300):
         class_names = ['REAL', 'FAKE']
         classification = f"**{class_names[predicted_class[0]]}**"
 
-    return [f"The article is predicted as: {classification}", f"Probability: {max(probabilities.numpy()[0]) * 100:.2f}%"]
+    return [f"The article is predicted as...    {classification}", f"Probability: {max(probabilities.numpy()[0]) * 100:.2f}%"]
 
 # ------------------------------------------------------------------------------------------------#
 
