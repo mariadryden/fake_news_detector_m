@@ -104,6 +104,44 @@ def test_article(article, optimizer=True, max_length=300):
 
 # Streamlit app
 
+def page_home():
+    st.title(":orange[_CredibleContent_] 📰")
+    st.markdown('''
+                #### The technological surge in the past few years has led to a plethora of **misinformation** being spread among the vast corners of the Internet.
+                ''')
+    st.markdown('''
+                #### This is a **news detector** that aims to predict whether a given news article conveys *real* information, *fake* information, or is rather *suspicious*.
+                ''')
+    st.markdown('''
+                ##### All you need to do is input a text below and the detector will return a prediction, as well as its respective probability.
+                ''')
+
+def page_prediction():
+    st.markdown("""
+        <style>
+        .stTextArea [data-baseweb=base-input] {
+            background-image: linear-gradient(140deg, rgb(54, 36, 31) 0%, rgb(121, 56, 100) 50%, rgb(106, 117, 25) 75%);
+            -webkit-text-fill-color: white;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+
+    user_input = st.text_area("Text input", )
+
+    if st.button("Predict"):
+        if user_input.strip() != "":
+            prediction_result = test_article(user_input, optimizer=True, max_length=500)
+            st.subheader(prediction_result[0])
+            if "SUSPICIOUS" in prediction_result[0]:
+                st.warning('Hmm... this article does not seem credible. It might be best to do further research on its contents. 🧐')
+            if "FAKE" in prediction_result[0]:
+                st.error('Hmm... this article is very likely to be providing false information. 🥸 We advise to use judgement and conduct further research on its contents.')
+            if "REAL" in prediction_result[0]:
+                st.success('This article contains credible information! 😎')
+            st.write(prediction_result[1])
+        else:
+            st.warning("Please enter text for prediction.")
+
 # Set Streamlit theme
 st.set_page_config(
     page_title="CredibleContent",
@@ -112,45 +150,11 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Increase font size for title using st.markdown with inline CSS
-# st.markdown("<h1 style='font-size: 36px;'>This is a larger title</h1>", unsafe_allow_html=True)
-st.title(":orange[_CredibleContent_] 📰")
+# Create a sidebar with navigation links
+page = st.sidebar.selectbox("Select a page", ["Home", "Prediction"])
 
-st.markdown('''
-            #### The technological surge in the past few years has led to a plethora of **misinformation** being spread among the vast corners of the Internet.
-            ''')
-st.markdown('''
-            #### This is a **news detector** that aims to predict whether a given news article conveys *real* information, *fake* information, or is rather *suspicious*.
-            ''')
-st.markdown('''
-            ##### All you need to do is input a text below and the detector will return a prediction, as well as its respective probability.
-            ''')
-
-st.markdown("""
-    <style>
-    .stTextArea [data-baseweb=base-input] {
-        background-image: linear-gradient(140deg, rgb(54, 36, 31) 0%, rgb(121, 56, 100) 50%, rgb(106, 117, 25) 75%);
-        -webkit-text-fill-color: white;
-    }
-
-    </style>
-    """,unsafe_allow_html=True)
-
-# User input for prediction
-user_input = st.text_area("Text input", )
-
-if st.button("Predict"):
-    # Make prediction when the button is clicked
-    if user_input.strip() != "":
-        prediction_result = test_article(user_input, optimizer=True, max_length=500)
-        # st.write(f"**{prediction_result[0]}**")
-        st.subheader(prediction_result[0])
-        if "SUSPICIOUS" in prediction_result[0]:
-            st.warning('Hmm... this article does not seem credible. It might be best to do further research on its contents. 🧐')
-        if "FAKE" in prediction_result[0]:
-            st.error('Hmm... this article is very likely to be providing false information. 🥸 We advise to use judgement and conduct further research on its contents.')
-        if "REAL" in prediction_result[0]:
-            st.success('This article contains credible information! 😎')
-        st.write(prediction_result[1])
-    else:
-        st.warning("Please enter text for prediction.")
+# Display the selected page
+if page == "Home":
+    page_home()
+elif page == "Prediction":
+    page_prediction()
