@@ -84,11 +84,11 @@ def test_article(article, optimizer=True, max_length=300):
     max_probability = tf.reduce_max(probabilities, axis=-1).numpy()[0]
 
     if max_probability < threshold:
-        classification = "Suspicious"
+        classification = "**Suspicious**"
     else:
         predicted_class = tf.argmax(probabilities, axis=-1).numpy()
         class_names = ['Real', 'Fake']
-        classification = class_names[predicted_class[0]]
+        classification = f"**{class_names[predicted_class[0]]}**"
 
     return [f"The article is predicted as: {classification}", f"Probabilities per class: {probabilities.numpy()[0]}"]
 
@@ -116,7 +116,8 @@ if st.button("Predict"):
     # Make prediction when the button is clicked
     if user_input.strip() != "":
         prediction_result = test_article(user_input, optimizer=True, max_length=500)
-        st.write(f"**{prediction_result[0]}**")
+        # st.write(f"**{prediction_result[0]}**")
+        st.write(prediction_result[0])
         if "Suspicious" in prediction_result[0]:
             st.warning('Hmm... this article does not seem credible. It might be best to do further research on its contents. 🧐')
         if "Fake" in prediction_result[0]:
