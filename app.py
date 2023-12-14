@@ -112,7 +112,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-st.title("CredibleContent 📰")
+st.title(":red[_CredibleContent_] 📰")
 st.markdown('''
             The technological surge in the past few years has led to a plethora of
             misinformation being spread among the vast corners of the Internet.
