@@ -104,17 +104,13 @@ def test_article(article, optimizer=True, max_length=300):
 
 # Streamlit app
 
-# Read theme configurations from config.toml
-# theme_config = toml.load(".streamlit/config.toml")["theme"]
-
 # Set Streamlit theme
-# st.set_page_config(
-#     page_title="CredibleContent",
-#     page_icon="📰",
-#     layout="wide",
-#     initial_sidebar_state="expanded",
-#     **theme_config
-# )
+st.set_page_config(
+    page_title="CredibleContent",
+    page_icon="📰",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 st.title("CredibleContent 📰")
 st.markdown('''
@@ -129,6 +125,16 @@ st.markdown('''
             All you need to do is input a text below and it will return a prediction,
             as well as its probability.
             ''')
+
+st.markdown("""
+    <style>
+    .stTextArea [data-baseweb=base-input] {
+        background-image: linear-gradient(140deg, rgb(54, 36, 31) 0%, rgb(121, 56, 100) 50%, rgb(106, 117, 25) 75%);
+        -webkit-text-fill-color: white;
+    }
+
+    </style>
+    """,unsafe_allow_html=True)
 
 # User input for prediction
 user_input = st.text_area("Text input", )
