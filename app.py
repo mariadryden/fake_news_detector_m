@@ -32,24 +32,22 @@ model = TFDistilBertForSequenceClassification.from_pretrained('tf_model.h5', con
 
 # ------------------------------------------------------------------------------------------------#
 
-## download the dictionary for stopwords
+# Download the dictionary for stopwords
 nltk.download('stopwords')
 
-## get the set of stopwords
+# Get the set of stopwords
 stop_words_set = set(stopwords.words('english'))
 
-## Load English tokenizer from spacy
+# Load English tokenizer from spacy
 nlp = English()
 spacy_tokenizer = nlp.tokenizer ## make instance
 
-## Create function to clean text -- lowercase, remove non alphanumeric, remove stop words
-def optimized_preprocess(texts): ## Takes in a list of texts, i.e. the entire corpus
-    result = []
+# Create function to clean text -- lowercase, remove non alphanumeric, remove stop words
+def optimized_preprocess(text): ## Takes in a list of texts, i.e. the entire corpus
     # Tokenize using spaCy’s tokenizer
-    for text in texts:
-        tokens = [token.text.lower() for token in spacy_tokenizer(text) if token.text.isalpha() and token.text.lower() not in stop_words_set]
-        result.append(" ".join(tokens))
-    return result
+    tokens = [token.text.lower() for token in spacy_tokenizer(text) if token.text.isalpha() and token.text.lower() not in stop_words_set]
+    cleaned_query= ' '.join(word for word in tokens)
+    return cleaned_query
 
 # ------------------------------------------------------------------------------------------------#
 
@@ -84,34 +82,15 @@ def test_article(article, optimizer=True, max_length=300):
     # Softmax converts logits to probabilities, making them easier to interpret.
     probabilities = tf.nn.softmax(predictions.logits, axis=-1)
     max_probability = tf.reduce_max(probabilities, axis=-1).numpy()[0]
+
     if max_probability < threshold:
         classification = "Suspicious"
     else:
         predicted_class = tf.argmax(probabilities, axis=-1).numpy()
         class_names = ['Real', 'Fake']
         classification = class_names[predicted_class[0]]
+
     return [f"The article is predicted as: {classification}", f"Probabilities per class: {probabilities.numpy()[0]}"]
-
-# ------------------------------------------------------------------------------------------------#
-
-# # Function to predict using the DistilBERT model
-# def predict_sentiment(text):
-#     # Tokenize input text
-#     inputs = tokenizer(text, return_tensors="tf")
-
-#     # Convert BatchEncoding to Numpy arrays
-#     input_ids_np = inputs["input_ids"].numpy()
-#     attention_mask_np = inputs["attention_mask"].numpy()
-
-#     # Make prediction
-#     logits = model.predict({"input_ids": input_ids_np, "attention_mask": attention_mask_np})["logits"]
-
-#     # Clear TensorFlow session
-#     tf.keras.backend.clear_session()
-
-#     predicted_class = tf.argmax(logits, axis=1).numpy().item()
-
-#     return predicted_class
 
 # ------------------------------------------------------------------------------------------------#
 
@@ -131,27 +110,19 @@ st.markdown('''
             ''')
 
 # User input for prediction
-user_input = st.text_area("Text input", "Type here...")
+user_input = st.text_area("Text input", "Type here....")
 
 if st.button("Predict"):
     # Make prediction when the button is clicked
     if user_input.strip() != "":
-        sentiment = test_article(user_input, optimizer=True, max_length=300)
-        # result = "Positive" if sentiment == 1 else "Negative"
-        # st.success(f"The predicted sentiment is: {result}")
+        prediction_result = test_article(user_input, optimizer=True, max_length=500)
+        st.write(f"**{prediction_result[0]}**")
+        if "Suspicious" in prediction_result[0]:
+            st.warning('Hmm... this article does not seem credible. It might be best to do further research on its contents. 🧐')
+        if "Fake" in prediction_result[0]:
+            st.error('Hmm... this article is very likely to be providing false information. 🥸 We advise to use judgement and conduct further research on its contents.')
+        if "Real" in prediction_result[0]:
+            st.success('This article contains credible information! 😎')
+        st.write(prediction_result[1])
     else:
         st.warning("Please enter text for prediction.")
-
-
-# txt = st.text_area('Text to analyze', )
-
-# st.write('This text is:', len(txt))
-
-
-# if st.button('click me'):
-#     # print is visible in the server output, not in the page
-#     print('button clicked!')
-#     st.write('I was clicked 🎉')
-#     st.write('Further clicks are not visible but are executed')
-# else:
-#     st.write('I was not clicked 😞')
