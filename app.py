@@ -92,10 +92,10 @@ def test_article(article, optimizer=True, max_length=300):
     max_probability = tf.reduce_max(probabilities, axis=-1).numpy()[0]
 
     if max_probability < threshold:
-        classification = "**Suspicious**"
+        classification = "**SUSPICIOUS**"
     else:
         predicted_class = tf.argmax(probabilities, axis=-1).numpy()
-        class_names = ['Real', 'Fake']
+        class_names = ['REAL', 'FAKE']
         classification = f"**{class_names[predicted_class[0]]}**"
 
     return [f"The article is predicted as: {classification}", f"Probability: {max(probabilities.numpy()[0]) * 100:.2f}%"]
