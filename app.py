@@ -6,6 +6,7 @@ import spacy
 from spacy.lang.en import English
 from nltk.corpus import stopwords
 import nltk
+import toml
 
 # ------------------------------------------------------------------------------------------------#
 
@@ -95,6 +96,19 @@ def test_article(article, optimizer=True, max_length=300):
 # ------------------------------------------------------------------------------------------------#
 
 # Streamlit app
+
+# Read theme configurations from config.toml
+theme_config = toml.load("config.toml")["theme"]
+
+# Set Streamlit theme
+st.set_page_config(
+    page_title="CredibleContent",
+    page_icon="📰",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    **theme_config
+)
+
 st.title("CredibleContent 📰")
 st.markdown('''
             The technological surge in the past few years has led to a plethora of

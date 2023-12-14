@@ -4,3 +4,4 @@ streamlit
 requests
 spacy
 nltk
+toml
