@@ -15,7 +15,7 @@ import toml
 url_model = 'https://storage.googleapis.com/fake-news-detection-wagon/distilbert_model_best.h5/tf_model.h5'
 url_config = 'https://storage.googleapis.com/fake-news-detection-wagon/distilbert_model_best.h5/config.json'
 
-url_tok_config = 'https://storage.googleapis.com/fake-news-detection-wagon/distilbert_tokenizer_best/tokenizer_config.json'
+url_tok_config = 'https://storage.googleapis.com/fake-news-detection-wagon/distilbert_tokenizer_best/vocab.txt'
 
 def download_file(url, output_path):
     response = requests.get(url)
@@ -25,14 +25,14 @@ def download_file(url, output_path):
 output_path_model = './tf_model.h5'
 output_path_config = './config.json'
 
-output_path_tok = './tokenizer_config.json'
+output_path_tok = './vocab.txt'
 
 download_file(url_model, output_path_model)
 download_file(url_config, output_path_config)
 
 download_file(url_tok_config, output_path_tok)
 
-tokenizer = DistilBertTokenizer.from_pretrained("tokenizer_config.json")
+tokenizer = DistilBertTokenizer.from_pretrained("vocab.txt")
 
 config_model = DistilBertConfig.from_json_file('config.json')
 
