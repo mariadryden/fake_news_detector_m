@@ -112,7 +112,10 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-st.header(":orange[_CredibleContent_] 📰")
+# Increase font size for title using st.markdown with inline CSS
+st.markdown("<h1 style='font-size: 36px;'>This is a larger title</h1>", unsafe_allow_html=True)
+st.title(":orange[_CredibleContent_] 📰")
+
 st.markdown('''
             ### The technological surge in the past few years has led to a plethora of **misinformation** being spread among the vast corners of the Internet.
             ''')
