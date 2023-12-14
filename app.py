@@ -110,7 +110,7 @@ st.markdown('''
             ''')
 
 # User input for prediction
-user_input = st.text_area("Text input", "Type here....")
+user_input = st.text_area("Text input", )
 
 if st.button("Predict"):
     # Make prediction when the button is clicked
