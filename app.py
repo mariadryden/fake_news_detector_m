@@ -144,7 +144,7 @@ if st.button("Predict"):
     if user_input.strip() != "":
         prediction_result = test_article(user_input, optimizer=True, max_length=500)
         # st.write(f"**{prediction_result[0]}**")
-        st.write(prediction_result[0])
+        st.subheader(prediction_result[0])
         if "SUSPICIOUS" in prediction_result[0]:
             st.warning('Hmm... this article does not seem credible. It might be best to do further research on its contents. 🧐')
         if "FAKE" in prediction_result[0]:
