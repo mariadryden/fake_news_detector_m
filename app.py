@@ -112,11 +112,12 @@ def page_home():
     st.markdown('''
                 #### This is a **news detector** that aims to predict whether a given news article conveys *real* information, *fake* information, or is rather *suspicious*.
                 ''')
+
+def page_prediction():
     st.markdown('''
                 ##### All you need to do is input a text below and the detector will return a prediction, as well as its respective probability.
                 ''')
 
-def page_prediction():
     st.markdown("""
         <style>
         .stTextArea [data-baseweb=base-input] {
