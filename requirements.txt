@@ -1,7 +1,6 @@
 transformers
 tensorflow
 streamlit
-google-cloud-storage
-gcsfs
-st-files-connection
 requests
+spacy
+nltk
