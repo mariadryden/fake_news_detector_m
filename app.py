@@ -170,18 +170,9 @@ def page_prediction():
 st.set_page_config(
     page_title="CredibleContent",
     page_icon="📰",
-    layout="wide",
+    layout="centered",
     initial_sidebar_state="expanded"
 )
-
-# # Create a sidebar with navigation links
-# page = st.sidebar.selectbox("Select a page", ["About CredibleContent", "Prediction"])
-
-# # Display the selected page
-# if page == "About CredibleContent":
-#     page_home()
-# elif page == "Prediction":
-#     page_prediction()
 
 # Create tabs in the main area
 tabs = st.sidebar.radio("Select a page", ["Home", "Prediction"])
