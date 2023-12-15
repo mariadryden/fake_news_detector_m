@@ -128,21 +128,13 @@ def page_home():
     with col3:
         st.write(' ')
 
-    #Markdown centering
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.write(' ')
-
-    with col2:
-        st.markdown('''
+    #Markdown text
+    st.markdown('''
                 #### The technological surge in the past few years has led to a plethora of **misinformation** being spread among the vast corners of the Internet.
                 ''')
-        st.markdown('''
+    st.markdown('''
                 #### This is a **news detector** that aims to predict whether a given news article conveys *real* information, *fake* information, or is rather *suspicious*.
                 ''')
-
-    with col3:
-        st.write(' ')
 
 
 def page_prediction():
