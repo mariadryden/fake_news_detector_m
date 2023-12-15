@@ -106,7 +106,7 @@ def test_article(article, optimizer=True, max_length=300):
 # Display an image from a URL
 
 def page_home():
-    st.image("https://upload.wikimedia.org/wikipedia/commons/f/f7/The_fin_de_si%C3%A8cle_newspaper_proprietor_%28cropped%29.jpg", width=100)
+    st.image("https://upload.wikimedia.org/wikipedia/commons/f/f7/The_fin_de_si%C3%A8cle_newspaper_proprietor_%28cropped%29.jpg", width=400)
     st.title(":orange[_CredibleContent_] 📰")
     st.markdown('''
                 #### The technological surge in the past few years has led to a plethora of **misinformation** being spread among the vast corners of the Internet.
@@ -156,8 +156,24 @@ st.set_page_config(
 # Create a sidebar with navigation links
 page = st.sidebar.selectbox("Select a page", ["Home", "Prediction"])
 
-# Display the selected page
+# Center the content on each page
+st.markdown("""
+    <style>
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+# Display the selected page within a centered container
 if page == "Home":
+    st.markdown('<div class="center">', unsafe_allow_html=True)
     page_home()
+    st.markdown('</div>', unsafe_allow_html=True)
 elif page == "Prediction":
+    st.markdown('<div class="center">', unsafe_allow_html=True)
     page_prediction()
+    st.markdown('</div>', unsafe_allow_html=True)
