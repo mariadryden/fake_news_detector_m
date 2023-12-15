@@ -121,7 +121,7 @@ def page_prediction():
     st.markdown("""
         <style>
         .stTextArea [data-baseweb=base-input] {
-            background-image: #d6d4e0;
+            background-image: #e8e1f0;
             -webkit-text-fill-color: black;
         }
         </style>
