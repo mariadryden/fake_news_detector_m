@@ -156,24 +156,8 @@ st.set_page_config(
 # Create a sidebar with navigation links
 page = st.sidebar.selectbox("Select a page", ["Home", "Prediction"])
 
-# Center the content on each page
-st.markdown("""
-    <style>
-    .center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-    </style>
-""", unsafe_allow_html=True)
-
-# Display the selected page within a centered container
+# Display the selected page
 if page == "Home":
-    st.markdown('<div class="center">', unsafe_allow_html=True)
     page_home()
-    st.markdown('</div>', unsafe_allow_html=True)
 elif page == "Prediction":
-    st.markdown('<div class="center">', unsafe_allow_html=True)
     page_prediction()
-    st.markdown('</div>', unsafe_allow_html=True)
