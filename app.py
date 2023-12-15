@@ -123,7 +123,8 @@ def page_home():
         st.write(' ')
 
     with col2:
-        st.markdown("<h1 style='text-align: center; color: #d9a138; font-style: italic;'>CredibleContent 📰</h1>", unsafe_allow_html=True)
+        st.title(":orange[_CredibleContent_]")
+        st.title("📰")
 
     with col3:
         st.write(' ')
