@@ -122,7 +122,7 @@ def page_prediction():
         <style>
         .stTextArea [data-baseweb=base-input] {
             background-image: linear-gradient(to bottom right, #ffffff 0%, #ccccff 100%);
-            -webkit-text-fill-color: #694c6b;
+            -webkit-text-fill-color: black;
         }
         </style>
         """, unsafe_allow_html=True)
