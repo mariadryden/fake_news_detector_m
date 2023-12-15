@@ -106,14 +106,44 @@ def test_article(article, optimizer=True, max_length=300):
 # Display an image from a URL
 
 def page_home():
-    st.image("https://upload.wikimedia.org/wikipedia/commons/f/f7/The_fin_de_si%C3%A8cle_newspaper_proprietor_%28cropped%29.jpg", width=400)
-    st.title(":orange[_CredibleContent_] 📰")
-    st.markdown('''
+    #Image centering
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.write(' ')
+
+    with col2:
+        st.image("https://upload.wikimedia.org/wikipedia/commons/f/f7/The_fin_de_si%C3%A8cle_newspaper_proprietor_%28cropped%29.jpg", width=400)
+
+    with col3:
+        st.write(' ')
+
+    #Title centering
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.write(' ')
+
+    with col2:
+        st.title(":orange[_CredibleContent_] 📰")
+
+    with col3:
+        st.write(' ')
+
+    #Markdown centering
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.write(' ')
+
+    with col2:
+        st.markdown('''
                 #### The technological surge in the past few years has led to a plethora of **misinformation** being spread among the vast corners of the Internet.
                 ''')
-    st.markdown('''
+        st.markdown('''
                 #### This is a **news detector** that aims to predict whether a given news article conveys *real* information, *fake* information, or is rather *suspicious*.
                 ''')
+
+    with col3:
+        st.write(' ')
+
 
 def page_prediction():
     st.markdown('''
