@@ -120,6 +120,32 @@ def page_prediction():
                 ##### All you need to do is input the body of the article below and the detector will return a prediction, as well as its respective probability.
                 ''')
 
+# Set Streamlit theme
+st.set_page_config(
+    page_title="CredibleContent",
+    page_icon="📰",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# Create a sidebar with navigation links
+page = st.sidebar.selectbox("Select a page", ["Home", "Prediction"])
+
+# Center the content on each page
+if page == "Home":
+    st.title(":orange[_CredibleContent_] 📰")
+    st.markdown('''
+                #### The technological surge in the past few years has led to a plethora of **misinformation** being spread among the vast corners of the Internet.
+                ''')
+    st.markdown('''
+                #### This is a **news detector** that aims to predict whether a given news article conveys *real* information, *fake* information, or is rather *suspicious*.
+                ''')
+
+elif page == "Prediction":
+    st.title("Prediction")
+    st.markdown('''
+                ##### All you need to do is input the body of the article below and the detector will return a prediction, as well as its respective probability.
+                ''')
     st.markdown("""
         <style>
         .stTextArea [data-baseweb=base-input] {
@@ -144,20 +170,3 @@ def page_prediction():
             st.write(prediction_result[1])
         else:
             st.warning("Please enter text for prediction.")
-
-# Set Streamlit theme
-st.set_page_config(
-    page_title="CredibleContent",
-    page_icon="📰",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
-
-# Create a sidebar with navigation links
-page = st.sidebar.selectbox("Select a page", ["Home", "Prediction"])
-
-# Display the selected page
-if page == "Home":
-    page_home()
-elif page == "Prediction":
-    page_prediction()
