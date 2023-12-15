@@ -117,7 +117,7 @@ def page_home():
                 #### This is a **news detector** that aims to combat this problem by predicting whether a given news article conveys *real* information, *fake* information, or is rather *suspicious*.
                 ''')
     st.markdown('''
-                ##### To test an article, go to the 'Prediction' page displayed on the left!
+                #### To test an article, go to the 'Prediction' page displayed on the left!
                 ''')
 
 def page_prediction():
