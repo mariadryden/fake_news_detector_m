@@ -103,9 +103,32 @@ def test_article(article, optimizer=True, max_length=300):
 # ------------------------------------------------------------------------------------------------#
 
 # Streamlit app
-# Display an image from a URL
+
+def center_content():
+    st.markdown(
+        """
+        <style>
+        .center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+    st.markdown('<div class="center">', unsafe_allow_html=True)
+
+
+def end_center_content():
+    st.markdown("</div>", unsafe_allow_html=True)
+
 
 def page_home():
+    center_content()
+    # Add an image near the title
     st.image("https://upload.wikimedia.org/wikipedia/commons/f/f7/The_fin_de_si%C3%A8cle_newspaper_proprietor_%28cropped%29.jpg", width=400)
     st.title(":orange[_CredibleContent_] 📰")
     st.markdown('''
@@ -114,34 +137,11 @@ def page_home():
     st.markdown('''
                 #### This is a **news detector** that aims to predict whether a given news article conveys *real* information, *fake* information, or is rather *suspicious*.
                 ''')
+    end_center_content()
+
 
 def page_prediction():
-    st.markdown('''
-                ##### All you need to do is input the body of the article below and the detector will return a prediction, as well as its respective probability.
-                ''')
-
-# Set Streamlit theme
-st.set_page_config(
-    page_title="CredibleContent",
-    page_icon="📰",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
-
-# Create a sidebar with navigation links
-page = st.sidebar.selectbox("Select a page", ["Home", "Prediction"])
-
-# Center the content on each page
-if page == "Home":
-    st.title(":orange[_CredibleContent_] 📰")
-    st.markdown('''
-                #### The technological surge in the past few years has led to a plethora of **misinformation** being spread among the vast corners of the Internet.
-                ''')
-    st.markdown('''
-                #### This is a **news detector** that aims to predict whether a given news article conveys *real* information, *fake* information, or is rather *suspicious*.
-                ''')
-
-elif page == "Prediction":
+    center_content()
     st.title("Prediction")
     st.markdown('''
                 ##### All you need to do is input the body of the article below and the detector will return a prediction, as well as its respective probability.
@@ -170,3 +170,22 @@ elif page == "Prediction":
             st.write(prediction_result[1])
         else:
             st.warning("Please enter text for prediction.")
+    end_center_content()
+
+
+# Set Streamlit theme
+st.set_page_config(
+    page_title="CredibleContent",
+    page_icon="📰",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# Create a sidebar with navigation links
+page = st.sidebar.selectbox("Select a page", ["Home", "Prediction"])
+
+# Display the selected page
+if page == "Home":
+    page_home()
+elif page == "Prediction":
+    page_prediction()
