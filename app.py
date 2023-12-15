@@ -124,7 +124,6 @@ def page_home():
 
     with col2:
         st.markdown("<h1 style='text-align: center; color: orange; font-style: italic; font-size: 48px;'>CredibleContent 📰</h1>", unsafe_allow_html=True)
-        st.markdown("<h1 style='text-align: center; font-size:40px; '>📰</h1>", unsafe_allow_html=True)
 
     with col3:
         st.write(' ')
