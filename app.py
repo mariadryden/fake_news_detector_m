@@ -129,7 +129,7 @@ def page_prediction():
 
     user_input = st.text_area("Text input", )
 
-    if st.button("Predict"):
+    if st.button("**Predict**"):
         if user_input.strip() != "":
             prediction_result = test_article(user_input, optimizer=True, max_length=500)
             st.subheader(prediction_result[0])
