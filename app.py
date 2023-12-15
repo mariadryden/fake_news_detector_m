@@ -107,7 +107,7 @@ def test_article(article, optimizer=True, max_length=300):
 def page_home():
 
     st.markdown('<div class="centered-image"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/The_fin_de_si%C3%A8cle_newspaper_proprietor_%28cropped%29.jpg" width="700" /></div>', unsafe_allow_html=True)
-    # st.image("https://upload.wikimedia.org/wikipedia/commons/f/f7/The_fin_de_si%C3%A8cle_newspaper_proprietor_%28cropped%29.jpg", width=400)
+
     st.markdown("<h1 style='text-align: center; color: orange; font-style: italic; font-size: 48px;'>CredibleContent 📰</h1>", unsafe_allow_html=True)
 
     st.markdown('''
@@ -116,10 +116,13 @@ def page_home():
     st.markdown('''
                 #### This is a **news detector** that aims to combat this problem by predicting whether a given news article conveys *real* information, *fake* information, or is rather *suspicious*.
                 ''')
+    st.markdown('''
+                ##### To test an article, go to the 'Prediction' page displayed on the left!
+                ''')
 
 def page_prediction():
     st.markdown('''
-                #### All you need to do is input the body of the article below and the detector will return a prediction, as well as its respective probability.
+                #### Input the body of an article below and the detector will return a prediction of how real, fake, or suspicious it is, as well as its respective probability.
                 ''')
 
     st.markdown("""
