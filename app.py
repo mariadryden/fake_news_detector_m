@@ -106,7 +106,7 @@ def test_article(article, optimizer=True, max_length=300):
 
 def page_home():
 
-    st.markdown('<div class="centered-image"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/The_fin_de_si%C3%A8cle_newspaper_proprietor_%28cropped%29.jpg" width="400" /></div>', unsafe_allow_html=True)
+    st.markdown('<div class="centered-image"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/The_fin_de_si%C3%A8cle_newspaper_proprietor_%28cropped%29.jpg" width="800" /></div>', unsafe_allow_html=True)
     # st.image("https://upload.wikimedia.org/wikipedia/commons/f/f7/The_fin_de_si%C3%A8cle_newspaper_proprietor_%28cropped%29.jpg", width=400)
     st.markdown("<h1 style='text-align: center; color: orange; font-style: italic; font-size: 48px;'>CredibleContent 📰</h1>", unsafe_allow_html=True)
 
