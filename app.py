@@ -139,7 +139,7 @@ def page_home():
 
 def page_prediction():
     st.markdown('''
-                ##### All you need to do is input the body of the article below and the detector will return a prediction, as well as its respective probability.
+                #### All you need to do is input the body of the article below and the detector will return a prediction, as well as its respective probability.
                 ''')
 
     st.markdown("""
