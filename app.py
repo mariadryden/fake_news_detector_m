@@ -103,7 +103,6 @@ def test_article(article, optimizer=True, max_length=300):
 # ------------------------------------------------------------------------------------------------#
 
 # Streamlit app
-# Display an image from a URL
 
 def page_home():
     #Image centering
@@ -133,7 +132,7 @@ def page_home():
                 #### The technological surge in the past few years has led to a plethora of **misinformation** being spread among the vast corners of the Internet.
                 ''')
     st.markdown('''
-                #### This is a **news detector** that aims to predict whether a given news article conveys *real* information, *fake* information, or is rather *suspicious*.
+                #### This is a **news detector** that aims to combat this problem by predicting whether a given news article conveys *real* information, *fake* information, or is rather *suspicious*.
                 ''')
 
 
@@ -175,11 +174,12 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Create a sidebar with navigation links
-page = st.sidebar.selectbox("Select a page", ["Home", "Prediction"])
+# Create direct links in the sidebar
+st.sidebar.markdown("[About CredibleContent](#home)")
+st.sidebar.markdown("[Prediction](#prediction)")
 
 # Display the selected page
-if page == "Home":
+if st.sidebar.button("About CredibleContent"):
     page_home()
-elif page == "Prediction":
+elif st.sidebar.button("Prediction"):
     page_prediction()
