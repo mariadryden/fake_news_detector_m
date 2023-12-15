@@ -174,12 +174,20 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Create direct links in the sidebar
-st.sidebar.markdown("[About CredibleContent](#home)")
-st.sidebar.markdown("[Prediction](#prediction)")
+# # Create a sidebar with navigation links
+# page = st.sidebar.selectbox("Select a page", ["About CredibleContent", "Prediction"])
+
+# # Display the selected page
+# if page == "About CredibleContent":
+#     page_home()
+# elif page == "Prediction":
+#     page_prediction()
+
+# Create tabs in the main area
+tabs = st.sidebar.radio("Select a page", ["Home", "Prediction"])
 
 # Display the selected page
-if st.sidebar.button("About CredibleContent"):
+if tabs == "Home":
     page_home()
-elif st.sidebar.button("Prediction"):
+elif tabs == "Prediction":
     page_prediction()
