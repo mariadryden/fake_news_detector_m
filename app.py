@@ -104,10 +104,9 @@ def test_article(article, optimizer=True, max_length=300):
 
 # Streamlit app
 # Display an image from a URL
-image_url = "https://upload.wikimedia.org/wikipedia/commons/f/f7/The_fin_de_si%C3%A8cle_newspaper_proprietor_%28cropped%29.jpg"
-st.image(image_url, use_column_width=True)
 
 def page_home():
+    st.image("https://upload.wikimedia.org/wikipedia/commons/f/f7/The_fin_de_si%C3%A8cle_newspaper_proprietor_%28cropped%29.jpg", width=100)
     st.title(":orange[_CredibleContent_] 📰")
     st.markdown('''
                 #### The technological surge in the past few years has led to a plethora of **misinformation** being spread among the vast corners of the Internet.
