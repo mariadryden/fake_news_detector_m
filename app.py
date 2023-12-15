@@ -105,7 +105,16 @@ def test_article(article, optimizer=True, max_length=300):
 # Streamlit app
 
 def page_home():
-    st.image("https://upload.wikimedia.org/wikipedia/commons/f/f7/The_fin_de_si%C3%A8cle_newspaper_proprietor_%28cropped%29.jpg", width=400)
+
+    # Centered image
+    col1, _, col2 = st.columns([1, 2, 1])  # Create columns to center the image
+    with col1:
+        st.write("")  # Adjust the width of the left column to center the image
+    with col2:
+        st.image("https://upload.wikimedia.org/wikipedia/commons/f/f7/The_fin_de_si%C3%A8cle_newspaper_proprietor_%28cropped%29.jpg", width=400)
+    with col2:
+        st.write("")  # Adjust the width of the right column to center the image
+    # st.image("https://upload.wikimedia.org/wikipedia/commons/f/f7/The_fin_de_si%C3%A8cle_newspaper_proprietor_%28cropped%29.jpg", width=400)
     st.markdown("<h1 style='text-align: center; color: orange; font-style: italic; font-size: 48px;'>CredibleContent 📰</h1>", unsafe_allow_html=True)
 
     st.markdown('''
