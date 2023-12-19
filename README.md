@@ -3,6 +3,12 @@
 Forked from a collaborative repo in order to work on the Streamlit application.
 
 
+The collaborative repo contains all the files and code that were used to create this application.
+
+A DistilBERT model was used and trained on about 20,000 rows of data, both 'real' and 'fake' articles.
+
+---------------------------------
+
 *The Home Page*
 
 <img width="894" alt="Screen Shot 2023-12-19 at 2 43 02 PM" src="https://github.com/mariadryden/fake_news_detector_m/assets/147217308/e41a3947-d24d-460a-8374-111092c67449">
